@@ -22,6 +22,7 @@ This module walks students through building a Marketplace web app using the MEN 
 | [Update Listing](./update-listing/README.md)           | PUT form submission                       |
 | [Comments Feature](./comments/README.md)               | Embed comment schema, add form            |
 | [Cloudinary Uploads](./cloudinary-upload/README.md)    | Add image uploads via Cloudinary + Multer |
+| [Common Errors and Debugging](./debug/README.md)       | Debugging is part of the process!         |
 | **Total content**                                      | 13 lessons                                |
 
 
