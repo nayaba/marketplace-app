@@ -41,6 +41,13 @@ const listingSchema = new mongoose.Schema({
 module.exports = mongoose.model('Listing', listingSchema)
 ```
 
+<details>
+<summary>💡 Why embed comments instead of separating them into their own model?</summary>
+
+Embedded documents keep related data together — perfect for when comments *only* exist inside a listing. It’s simpler and faster to fetch them without a separate query.
+</details>
+
+
 ---
 
 ## 2. Add the Comment POST Route
@@ -57,6 +64,12 @@ router.post('/:listingId/comments', isSignedIn, async (req, res) => {
   res.redirect(`/listings/${req.params.listingId}`)
 })
 ```
+
+<details>
+<summary>🛡️ Why add the author manually?</summary>
+
+We don’t trust the form to send the right author — we attach it server-side using `req.session.user._id` to prevent spoofing.
+</details>
 
 ---
 
@@ -87,6 +100,12 @@ Below it, display the comments:
 </ul>
 ```
 
+<details>
+<summary>🧠 What happens if we forget to <code>.populate()</code>?</summary>
+
+Without `.populate('comments.author')`, we’d only see the author’s ObjectId — not their username. Populate replaces the ID with the full User document.
+</details>
+
 ---
 
 ## 4. Update the Show Route to `.populate('comments.author')`
@@ -115,6 +134,12 @@ router.put('/:listingId/comments/:commentId', isSignedIn, async (req, res) => {
   }
 })
 ```
+
+<details>
+<summary>✏️ Why use <code>.id()</code> instead of <code>.find()</code>?</summary>
+
+When working with embedded subdocuments, `.id()` is a built-in Mongoose helper that finds a nested document by its `_id`.
+</details>
 
 ---
 
@@ -166,9 +191,16 @@ router.delete('/:listingId/comments/:commentId', isSignedIn, async (req, res) =>
 ---
 
 
-## ✅ You Do
+## ✅ Test it
 
 * Submit a comment as a signed-in user
 * Check that it appears on the show page with the author's name
+* Try updating or deleting it
+
+<details>
+<summary>📣 What’s next?</summary>
+
+You’ve built a full comment system inside each listing. This is useful for marketplaces, e-commerce apps, or even support ticket systems.
+</details>
 
 > Next: [Cloudinary Uploads](../cloudinary-upload/README.md)

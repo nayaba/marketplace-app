@@ -26,6 +26,12 @@ router.get('/:listingId/edit', isSignedIn, async (req, res) => {
 
 > ✅ We protect the route so only the owner can edit their own listings.
 
+<details>
+<summary><strong>🧠 Why use <code>.equals()</code> here?</strong></summary>
+
+Mongoose `_id` values are objects, not strings — so we use `.equals()` instead of `===` to compare them reliably.
+</details>
+
 ---
 
 ## 2. Create `views/listings/edit.ejs`
@@ -70,6 +76,7 @@ Paste the following into it:
 </body>
 </html>
 ```
+**📝 This form is pre-filled with the current listing data — ready for editing.**
 
 ---
 
@@ -89,6 +96,12 @@ In `show.ejs`, add this just below the delete button, inside the ownership check
 * Navigate to that listing's show page
 * Click “Edit”
 * You should see the form with fields pre-filled
+
+<details>
+<summary><strong>💼 Industry example</strong></summary>
+
+Sites like **Airbnb** use secure edit forms that verify ownership before allowing data changes.
+</details>
 
 ---
 

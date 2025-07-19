@@ -11,6 +11,12 @@
 
 Hosting user-uploaded images securely is an essential feature for many real-world apps. Using **Multer** with **Cloudinary** allows us to upload, store, and serve images with ease—and keep our database lean by avoiding direct file storage.
 
+<details>
+<summary>💡 Why not store images directly in MongoDB?</summary>
+
+Image files are large and can bloat your database. It's better to store them in a cloud service like Cloudinary and save just the URL in your database.
+</details>
+
 ---
 
 ## 🛠️ 1. Install Required Packages
@@ -26,6 +32,12 @@ CLOUDINARY_CLOUD_NAME=your-name
 CLOUDINARY_API_KEY=your-key
 CLOUDINARY_API_SECRET=your-secret
 ```
+
+<details>
+<summary>🧪 Where do I find these values?</summary>
+
+You can find them in your Cloudinary dashboard after creating an account.
+</details>
 
 Create a `config` folder for our multer and cloudinary config files:
 
@@ -72,6 +84,12 @@ const storage = new CloudinaryStorage({
 module.exports = multer({ storage: storage })
 ```
 
+<details>
+<summary>🤔 What does <code>CloudinaryStorage</code> do?</summary>
+
+It tells Multer to automatically send uploaded files to Cloudinary instead of your local machine.
+</details>
+
 ---
 
 ## 📦 Step 3: Use Multer in Controller
@@ -107,6 +125,13 @@ router.post('/', isSignedIn, upload.single('image'), async (req, res) => {
 })
 ```
 
+<details>
+<summary>🧠 Why use <code>req.file.path</code> and <code>req.file.filename</code>?</summary>
+
+- `path`: the image URL  
+- `filename`: the unique ID Cloudinary assigns for later deletion or updates
+</details>
+
 ---
 
 ## 🔄 Step 5: Update Listing Image on Edit
@@ -141,6 +166,12 @@ router.put('/:listingId', isSignedIn, upload.single('image'), async (req, res) =
 
 ```
 
+<details>
+<summary>♻️ Why delete the old Cloudinary image?</summary>
+
+To avoid wasted space and unused images sitting in your Cloudinary storage.
+</details>
+
 ---
 
 **6. Update the Delete Route to Also Remove the Cloudinary Image**
@@ -174,22 +205,28 @@ router.delete('/:listingId', isSignedIn, async (req, res) => {
 })
 ```
 
+<details>
+<summary>🚨 Why check for <code>cloudinary_id</code>?</summary>
 
+Not every listing may have an uploaded image. We avoid calling `.destroy()` on `undefined`.
+</details>
 
 ---
 
 
-## 🧪 Test it out
+## ✅ Test It Out
 
-* Add a new listing using the `new.ejs` form and upload an image.
-* Edit a listing and upload a **new image**—make sure the old one is deleted from Cloudinary!
-* Log `req.file` to console if you're not sure it's working.
-* Make sure you're signed in as the user who created the listing
-* Navigate to a listing you own and click the **Delete** button
-* Check that:
+* Add a listing using the `new.ejs` form and upload an image
+* Edit it and upload a new image
+  → Old image should disappear from Cloudinary
+* Delete the listing
+  → It should also delete the image in Cloudinary
 
-  * The listing is removed from the database
-  * The image is also removed from your Cloudinary dashboard
+<details>
+<summary>🧪 Need to debug?</summary>
+
+Use `console.log(req.file)` to check if the image is being uploaded successfully.
+</details>
 
 > 🧠 Cloudinary auto-generates URLs and filenames. You’ll use `req.file.path` (for the URL) and `req.file.filename` (for deletion/reference).
 

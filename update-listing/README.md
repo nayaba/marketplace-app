@@ -25,7 +25,10 @@ router.put('/:listingId', isSignedIn, async (req, res) => {
 })
 ```
 
-> 💡 We use `.populate('seller')` to confirm that the current user is the owner before allowing the update.
+**✏️ This route updates the listing *only* if the user owns it.**
+We protect the data by checking ownership using `.populate('seller')` and `.equals()`.
+
+> 💡 `new: true` ensures the updated version is returned by `findByIdAndUpdate`.
 
 ---
 
@@ -39,6 +42,8 @@ In `edit.ejs`, make sure your form action looks like this:
 
 This allows the form to submit a PUT request via the `method-override` middleware already set up in `server.js`.
 
+> 🧠 HTML forms only support GET and POST — `method-override` lets us simulate PUT and DELETE.
+
 ---
 
 ## 3. Test It
@@ -48,6 +53,12 @@ This allows the form to submit a PUT request via the `method-override` middlewar
 * Change the title, description, or price
 * Submit
 * Confirm you're redirected to the updated show page
+
+<details>
+<summary><strong>💼 Real-world connection</strong></summary>
+
+In corporate software (like HR portals or finance dashboards), update routes often require strict permission checks just like this — ensuring only authorized users can change data.
+</details>
 
 ---
 

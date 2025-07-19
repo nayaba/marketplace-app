@@ -11,6 +11,7 @@ This module walks students through building a Marketplace web app using the MEN 
 
 | Lesson                                                 | Skills                                    |
 | ------------------------------------------------------ | ----------------------------------------- |
+| [Planning](./planning/README.md)                       | Planning & Project Structure.             |
 | [Setup](./setup/README.md)                             | Cloning auth template, base routes        |
 | [Create Listing Form](./create-listing-form/README.md) | Show form to signed-in users              |
 | [POST Listing to DB](./post-listing/README.md)         | Save form data to MongoDB                 |

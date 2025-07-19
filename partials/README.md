@@ -29,6 +29,11 @@ Inside `head.ejs`, add this content:
 </head>
 <body>
 ```
+<details>
+<summary><strong>💡 Why use partials?</strong></summary>
+
+Repeating the same HTML across multiple pages is error-prone and inefficient. **Partials** let you reuse common layouts like headers and footers — this is part of the DRY (Don't Repeat Yourself) principle, which is a software industry best practice.
+</details>
 
 ---
 
@@ -58,6 +63,12 @@ Then, in your middleware section (after `app.use(morgan('dev'))`), add:
 app.use(express.static(path.join(__dirname, 'public')))
 ```
 
+<details>
+<summary><strong>📁 What does this do?</strong></summary>
+
+This line tells Express: “If the browser asks for a file like `style.css`, check the `public` folder.” Without this, static files won’t load in the browser.
+</details>
+
 ---
 
 ## Step 4: Create the public folder and stylesheet
@@ -76,11 +87,19 @@ body {
 }
 ```
 
-Now visit your browser and confirm the background turns red. Once it does, you can change it and add more CSS:
+Then open your app in the browser and confirm the background turns red.
+
+<details>
+<summary><strong>🔥 What is a "smoke test"?</strong></summary>
+
+A smoke test is a quick, simple test to make sure something works before you move forward. In this case, it checks that our stylesheet is hooked up correctly.
+</details>
 
 ---
 
 ## Step 5: Add basic styles
+
+Replace the red background with something more subtle and add a few layout rules:
 
 ```css
 body {
@@ -103,6 +122,12 @@ li {
 }
 ```
 
+<details>
+<summary><strong>🎨 What’s with 50vw?</strong></summary>
+
+`vw` stands for **viewport width** — it's a responsive unit that changes based on the size of the screen. Using `50vw` means your image or form will take up half the width of the browser window.
+</details>
+
 ## 6. Add Bootstrap via CDN
 
 In your `views/partials/head.ejs`, update the `<head>` to include Bootstrap CSS and JS:
@@ -122,6 +147,18 @@ In your `views/partials/head.ejs`, update the `<head>` to include Bootstrap CSS 
 ```
 
 ✅ This applies Bootstrap styles to all pages that include this partial.
+
+<details>
+<summary><strong>🚀 Why use a CDN for Bootstrap?</strong></summary>
+
+A CDN (Content Delivery Network) is fast, reliable, and requires no setup. It lets you use Bootstrap without downloading files — just copy and paste the link.
+</details>
+
+<details>
+<summary><strong>🌐 Who uses Bootstrap?</strong></summary>
+
+Bootstrap is used by many companies for internal tools and admin dashboards. It was originally created by developers at **Twitter** and remains one of the most popular CSS frameworks in the world.
+</details>
 
 ---
 
@@ -158,5 +195,11 @@ Still inside `partials/head.ejs`, add a Bootstrap navbar just under the opening 
   </div>
 </nav>
 ```
+
+<details>
+<summary><strong>🧩 Why include user-based logic here?</strong></summary>
+
+We check if a user is signed in so we can show them personalized options. This helps make the app more dynamic and user-friendly.
+</details>
 
 > Next: [Listings Index](../listings-index/README.md) 

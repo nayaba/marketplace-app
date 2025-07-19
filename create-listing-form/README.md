@@ -30,6 +30,15 @@ router.get('/new', isSignedIn, (req, res) => {
 module.exports = router
 ```
 
+<details>
+<summary><strong>💡 Why use a separate controller?</strong></summary>
+
+Creating a dedicated `listings.controller.js` file helps organize your code. Controllers separate the logic for handling requests from other parts of your app (like models or views), following the MVC (Model-View-Controller) architecture.
+
+This makes your code easier to maintain as your app grows—just like how real companies structure large apps.
+
+</details>
+
 ---
 
 ## 2. Hook the Controller into `server.js`
@@ -40,6 +49,15 @@ In `server.js`:
 const listingsController = require('./controllers/listings.controller')
 app.use('/listings', listingsController)
 ```
+
+<details>
+<summary><strong>💡 What does this line do?</strong></summary>
+
+This tells your app: “Any request starting with `/listings` should be handled by the listings controller.”
+
+So `/listings/new` will be matched to the `router.get('/new')` route you just made.
+
+</details>
 
 ---
 
@@ -84,6 +102,16 @@ Paste this code into `new.ejs`:
 </form>
 ```
 
+<details>
+<summary><strong>💡 Why EJS for views?</strong></summary>
+
+EJS (Embedded JavaScript) lets us write dynamic HTML that integrates with our server logic. It's simple, fast, and great for server-rendered apps.
+
+It's used in many full-stack Node projects, especially when teaching or building MVPs (Minimum Viable Products).
+
+</details>
+
+
 ---
 
 ## 4. Test It Out
@@ -93,6 +121,13 @@ Paste this code into `new.ejs`:
 3. Visit: `http://localhost:3000/listings/new`
 
 ✅ You should see a form!
+
+<details>
+<summary><strong>🧪 Why test manually?</strong></summary>
+
+Before connecting to the database, it’s important to verify that the form renders correctly and that route protection is working (only signed-in users can see the form).
+
+</details>
 
 ---
 
