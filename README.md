@@ -24,6 +24,7 @@ This module walks students through building a Marketplace web app using the MEN 
 | [Cloudinary Uploads](./cloudinary-upload/README.md)    | Add image uploads via Cloudinary + Multer |
 | [Common Errors and Debugging](./debug/README.md)       | Debugging is part of the process!         |
 | [Favorites Feature](./favorites-feature/README.md)     | Set up a many-to-many relationship        |
+| [Skeleton Loader](./skeleton-loader/README.md)         | Skeleton Loader with Bootstrap.           |
 | **Total content**                                      | 15 lessons                                |
 
 
