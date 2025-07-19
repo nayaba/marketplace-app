@@ -1,5 +1,4 @@
 <h1>
-  <span class="prefix">Module:</span>
   <span class="headline">Building a Marketplace App (MEN Stack)</span>
 </h1>
 
