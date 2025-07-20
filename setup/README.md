@@ -9,12 +9,12 @@
 
 ## 1. Clone the Auth Template
 
-In your terminal:
+In your terminal clone the app and remove the old git history:
 
 ```bash
 git clone https://github.com/nayaba/men-stack-session-auth-seb-7.git marketplace-app
 cd marketplace-app
-rm -rf .git         # remove old Git history
+rm -rf .git        
 npm install
 code .
 ```
@@ -44,7 +44,7 @@ git push -u origin main
 ```
 
 <details>
-<summary><strong>💡 Why remove `.git` and reinitialize?</strong></summary>
+<summary><strong>💡 Why remove <code>.git</code> and reinitialize?</strong></summary>
 
 You're starting a new project, so you don’t want to keep the Git history from the auth template. Removing `.git` lets you track only your own project commits.
 
@@ -115,10 +115,10 @@ Connected to MongoDB marketplace-db 🙃.
 The express app is ready on port 3000
 ```
 
-Go to `http://localhost:3000` — you should see a basic homepage.
+Go to [`http://localhost:3000`](http://localhost:3000) — you should see a basic homepage.
 
 <details>
-<summary><strong>💡 What does `nodemon` do?</strong></summary>
+<summary><strong>💡 What does <code>nodemon</code> do?</strong></summary>
 
 `nodemon` watches your files and **automatically restarts** the server when you make changes. This speeds up development.
 
